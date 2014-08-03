@@ -3,4 +3,4 @@
 - hosts: all
   sudo: true
   roles:
-    - { role: ../../kosssi.apache, tags: apache }
+    - { role: ../../ansible-role-apache, tags: apache }
