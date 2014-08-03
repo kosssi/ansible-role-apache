@@ -1,5 +1,7 @@
 ---
 
+apache_repository: ppa:ptn107/apache
+
 apache_install:
   - apache2
 

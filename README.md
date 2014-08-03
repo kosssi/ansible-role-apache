@@ -6,6 +6,8 @@ Install and configure apache.
 
 ## Role Defaults Variables
 
+    apache_repository: ppa:ptn107/apache
+
     apache_install:
       - apache2
 
