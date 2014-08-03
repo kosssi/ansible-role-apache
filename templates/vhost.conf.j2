@@ -6,6 +6,10 @@ DirectoryIndex {{ item.index | default('index.html') }}
     CustomLog {{ item.logDir | default('${APACHE_LOG_DIR}') }}/access.log combined
     {% if item.serveradmin is defined %}ServerAdmin {{ item.serveradmin }}{% endif %}
 
+{% if item.extra is defined %}{% for extra in item.extra %}
+    {{ extra }}
+{% endfor %}{% endif %}
+
     <Directory "{{ item.documentroot }}">
         AllowOverride All
         Options -Indexes +FollowSymLinks
@@ -13,19 +17,9 @@ DirectoryIndex {{ item.index | default('index.html') }}
         Allow from all
         Require all granted
 
-        RewriteEngine On
-        RewriteCond %{REQUEST_URI}::$1 ^(/.+)/(.*)::\2$
-        RewriteRule ^(.*) - [E=BASE:%1]
-        RewriteCond %{ENV:REDIRECT_STATUS} ^$
-        RewriteRule ^app\.php(/(.*)|$) %{ENV:BASE}/$2 [R=301,L]
-        RewriteCond %{REQUEST_FILENAME} -f
-        RewriteRule .? - [L]
-        RewriteRule .? %{ENV:BASE}/app.php [L]
+{% if item.directory_extra is defined %}{% for extra in item.directory_extra %}
+        {{ extra }}
+{% endfor %}{% endif %}
 
     </Directory>
-
-    {% if item.extra_parameters is defined %}
-      {{ item.extra_parameters }}
-    {% endif %}
-
 </VirtualHost>
