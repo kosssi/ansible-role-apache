@@ -1,4 +1,7 @@
 DirectoryIndex {{ item.index | default('index.html') }}
+{% if item.extra is defined %}{% for extra in item.extra %}
+    {{ extra }}
+{% endfor %}{% endif %}
 
 <VirtualHost *:{{ item.port | default('80') }}>
     ServerName {{ item.servername }}
@@ -7,7 +10,7 @@ DirectoryIndex {{ item.index | default('index.html') }}
     CustomLog {{ item.logDir | default('${APACHE_LOG_DIR}') }}/access.log combined
     {% if item.serveradmin is defined %}ServerAdmin {{ item.serveradmin }}{% endif %}
 
-{% if item.extra is defined %}{% for extra in item.extra %}
+{% if item.virtualhost_extra is defined %}{% for extra in item.virtualhost_extra %}
     {{ extra }}
 {% endfor %}{% endif %}
 
