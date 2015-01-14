@@ -25,7 +25,7 @@ Install and configure apache.
       - servername: test.dev
         index: index.php
         documentroot: /var/www/test
-        document_configure:
+        directory_extra:
           - RewriteEngine On
 
 ## Example Playbook
