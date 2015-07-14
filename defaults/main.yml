@@ -25,7 +25,6 @@ apache_vhosts:
     server_admin: test@example.com
     server_file_name: test
     document_root: /var/www/test
-    template: vhost_ssl.conf.j2
     directory_extra:
       - RewriteEngine On
     virtual_hosts:
@@ -34,7 +33,20 @@ apache_vhosts:
         server_alias: 
           - test.local
           - test.localnet
+  - server_name: test-ssl.dev
+    server_admin: test-ssl@example.com
+    server_file_name: test-ssl
+    document_root: /var/www/test-ssl
+    template: vhost_ssl.conf.j2
+    directory_extra:
+      - RewriteEngine On
+    virtual_hosts:
+      - has_ssl: false
+        port: 80
+        server_alias: 
+          - test-ssl.local
+          - test-ssl.localnet
       - has_ssl: true
         port: 443
-        certificate_file: "test.pem"
-        key_file: "test.key"
+        certificate_file: "test-ssl.pem"
+        key_file: "test-ssl.key"
