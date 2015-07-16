@@ -7,3 +7,4 @@
   pre_tasks:
     - file: path="/root/csr" state=directory
     - copy: src="site_files/certificates/test-ssl.key" dest="/root/csr/test-ssl.key"
+      changed_when: false
