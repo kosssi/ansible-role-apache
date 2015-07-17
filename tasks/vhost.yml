@@ -45,3 +45,14 @@
    - apache_vhosts
    - virtual_hosts
   when: apache_vhosts != false and item.1.has_ssl == true
+
+- name: Copy chain certificate if present
+  copy:
+    src: "site_files/certificates/{{item.1.chain_file}}"
+    dest: "{{apache_ssl_path}}"
+    mode: 0600
+  notify: Restart apache
+  with_subelements:
+   - apache_vhosts
+   - virtual_hosts
+  when: apache_vhosts != false and item.1.has_ssl == true and item.1.chain_file is defined

@@ -10,6 +10,8 @@
     SSLEngine On
     SSLCertificateFile /etc/apache2/ssl/{{host.certificate_file}}
     SSLCertificateKeyFile /etc/apache2/ssl/{{host.key_file}}
+{% if host.chain_file is defined %}    SSLCertificateChainFile /etc/apache2/ssl/{{ host.chain_file }}
+{% endif %}
     
 {% endif %}
     DocumentRoot {{ item.document_root }}
