@@ -37,7 +37,7 @@
 
 - name: Copy certificate
   copy:
-    src: "site_files/certificates/{{item.1.certificate_file}}"
+    src: "{{apache_ansible_ssl_path}}/{{item.1.certificate_file}}"
     dest: "{{apache_ssl_path}}"
     mode: 0600
   notify: Restart apache
@@ -48,7 +48,7 @@
 
 - name: Copy chain certificate if present
   copy:
-    src: "site_files/certificates/{{item.1.chain_file}}"
+    src: "{{apache_ansible_ssl_path}}/{{item.1.chain_file}}"
     dest: "{{apache_ssl_path}}"
     mode: 0600
   notify: Restart apache

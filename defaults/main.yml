@@ -2,7 +2,7 @@
 
 # apache_repository: ppa:ptn107/apache
 apache_repository: false
-
+apache_ansible_ssl_path: "site_files/certificates"
 apache_install:
   - apache2
     # Note: rsync is required by the key copy command in vhosts.yml used
