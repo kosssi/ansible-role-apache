@@ -30,6 +30,7 @@ apache_vhosts:
     server_admin: test@example.com
     server_file_name: test
     document_root: /var/www/test
+    document_root_options: -Indexes +FollowSymLinks
     directory_extra:
       - RewriteEngine On
     virtual_hosts:
@@ -42,6 +43,7 @@ apache_vhosts:
     server_admin: test-ssl@example.com
     server_file_name: test-ssl
     document_root: /var/www/test-ssl
+    document_root_options: -Indexes +FollowSymLinks
     template: vhost_ssl.conf.j2
     directory_extra:
       - RewriteEngine On

@@ -25,7 +25,7 @@
     </Directory>
 
     <Directory "{{ item.document_root }}">
-        Options -Indexes +FollowSymLinks
+        Options {{ item.document_root_options }}
         AllowOverride All
         Order allow,deny
         Allow from all
