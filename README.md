@@ -7,7 +7,7 @@ Install and configure apache.
 ## Role Defaults Variables
 
     apache_repository: false
-
+    apache_ansible_ssl_path: "site_files/certificates" 
     apache_install:
       - apache2
 
@@ -24,7 +24,8 @@ Install and configure apache.
     apache_vhosts:
       - servername: test.dev
         index: index.php
-        documentroot: /var/www/test
+        document_root: /var/www/test
+        document_root_options: -Indexes +FollowSymLinks
         directory_extra:
           - RewriteEngine On
 
