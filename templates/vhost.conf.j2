@@ -16,7 +16,7 @@ DirectoryIndex {{ item.index | default('index.html') }}
 
     <Directory "{{ item.document_root }}">
         AllowOverride All
-        Options -Indexes +FollowSymLinks
+        Options {{ item.document_root_options }} 
         Order allow,deny
         Allow from all
         Require all granted
