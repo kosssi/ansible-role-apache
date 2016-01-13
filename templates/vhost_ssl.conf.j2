@@ -8,9 +8,9 @@
 
 {% if host.has_ssl %}
     SSLEngine On
-    SSLCertificateFile /etc/apache2/ssl/{{host.certificate_file}}
-    SSLCertificateKeyFile /etc/apache2/ssl/{{host.key_file}}
-{% if host.chain_file is defined %}    SSLCertificateChainFile /etc/apache2/ssl/{{ host.chain_file }}
+    SSLCertificateFile {{ apache_ssl_path }}/{{ host.certificate_file }}
+    SSLCertificateKeyFile {{ apache_ssl_path }}/{{ host.key_file }}
+{% if host.chain_file is defined %}    SSLCertificateChainFile {{ apache_ssl_path }}/{{ host.chain_file }}
 {% endif %}
     
 {% endif %}
